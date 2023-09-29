@@ -1,9 +1,9 @@
 - publc folder - contais files accessible to the public
 - private folder - contains all other files that are not meant for public access.
 - 
-******
+**********************************
 *** to configure virtual host ****
-******
+**********************************
 
 go to C:\xampp\apache\conf/httpd.config
     under the # Supplemental configuration section, 
@@ -40,9 +40,11 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
     now open your browser
     YES, IT WORKED!😁😊😎
 
-******
+
+
+*******************
 *** getting started
-******
+*******************
 - composer init --help
 
 - composer init 
@@ -65,4 +67,59 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
 
 - check app is still working by refreshing home page
 
-- initialize git
+- initialize git in  project folder
+
+
+
+***************************************
+**** adjusting apache mode re-write****
+***************************************
+- open C:\xampp\apache\conf/extra/httpd-vhosts.conf
+- we would tell apache to let php code do the routing
+
+- adjust the file to look like below 
+    <VirtualHost *:80>
+        ##ServerAdmin webmaster@dummy-host2.example.com
+        DocumentRoot "/xampp/htdocs/php-expense-tracker-app/public"
+        ServerName php-expense-tracker-app.local
+        ##ErrorLog "logs/dummy-host2.example.com-error.log"
+        ##CustomLog "logs/dummy-host2.example.com-access.log" common
+
+        <Directory "/xampp/htdocs/php-expense-tracker-app/public">
+            RewriteEngine On #this enables us select a different file for a url
+
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteCond %{REQUEST_FILENAME} !-f
+
+            RewriteRule ^ /index.php [L] #this tells  php to run the index file regardless of the path
+        </Directory>
+    </VirtualHost>
+
+
+
+***********************************************************
+**** alternative to re-writing URLS using htaccess file ****
+***********************************************************
+- comment out the <Directory> portion of the httpd-vhosts.conf file
+- note: .htaccess works only folder it is contained in.
+- create a file in /public/.htaccess, and add the following without the comments
+    ##    RewriteEngine On #this enables us select a different file for a url
+
+    ##    RewriteCond %{REQUEST_FILENAME} !-d
+    ##    RewriteCond %{REQUEST_FILENAME} !-f
+
+    ##    RewriteRule ^ /index.php [L] #this tells  php to run the index file regardless of the path
+- restart xampp-reload browser
+
+
+
+*************************************
+*** To DISABLE the .htaccess file ***
+*************************************
+    - got to C:\xampp\apache\conf/extra/httpd.conf
+    - on line 273, change 
+        from:
+        AllowOverride All 
+        to:     
+        AllowOverride None
+    - restart xampp 

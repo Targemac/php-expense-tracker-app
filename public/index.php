@@ -3,7 +3,9 @@
 /**
  * this file is responsible for initializng our app
  */
-
+echo "<pre>";
+print_r($_SERVER);
+ 
 $app = include __DIR__ . "/../src/App/bootstrap.php";
 
 $app->run();

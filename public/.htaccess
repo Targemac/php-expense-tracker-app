@@ -1,0 +1,6 @@
+RewriteEngine On #this enables us select a different file for a url
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^ /index.php [L] #this tells php to run the index file regardless of the path
