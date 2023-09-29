@@ -40,4 +40,28 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
     now open your browser
     YES, IT WORKED!😁😊😎
 
+******
+*** getting started
+******
+- composer init --help
+
+- composer init 
+
+- in composer.json, add (this searches and loads all classes within that namespace)
+    "autoload": {
+        "psr-4": {
+            "Framework\\":"src/Framework",
+            "App\\":"src/App"
+        }
+    }
+
+- update composers list of auto-loaded classes
+     enter : composer dump-autoload
+
+    // include autoload files
+- in App/bootstrap.php
+    add these lines at top
+      require __DIR__ . "/../../vendor/autoload.php"; // load Composer's autoloader
+
+- check app is still working by refreshing home page
 

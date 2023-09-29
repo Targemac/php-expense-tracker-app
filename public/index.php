@@ -1,6 +1,9 @@
 <?php
 
-// setting the memory limit here affects only the current script
-ini_set("memory_limit", "255M");
+/**
+ * this file is responsible for initializng our app
+ */
 
-echo ini_get("memory_limit");
+$app = include __DIR__ . "/../src/App/bootstrap.php";
+
+$app->run();
