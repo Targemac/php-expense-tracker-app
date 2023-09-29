@@ -1,0 +1,43 @@
+- publc folder - contais files accessible to the public
+- private folder - contains all other files that are not meant for public access.
+- 
+******
+*** to configure virtual host ****
+******
+
+go to C:\xampp\apache\conf/httpd.config
+    under the # Supplemental configuration section, 
+        look for 
+        # Virtual hosts
+        Include conf/extra/httpd-vhosts.conf
+
+open C:\xampp\apache\conf/extra/httpd-vhosts.conf
+    scroll down to find the following
+
+        ##<VirtualHost *:80>
+            ##ServerAdmin webmaster@dummy-host2.example.com
+            ##DocumentRoot "/xampp/htdocs/dummy-host2.example.com"
+            ##ServerName dummy-host2.example.com
+            ##ErrorLog "logs/dummy-host2.example.com-error.log"
+            ##CustomLog "logs/dummy-host2.example.com-access.log" common
+        ##</VirtualHost>
+
+    remove comments
+    the <VirtualHost *:80> syntax is refered to as a container
+    our interest here is the 'DocumentRoot' and 'ServerName' directives
+
+    change  DocumentRoot "/xampp/htdocs/dummy-host2.example.com" to  DocumentRoot "/xampp/htdocs/php-expense-tracker-app/public"
+    change  ServerName dummy-host2.example.com to  ServerName php-expense-tracker-app.local
+
+    lookup https://www.hostinger.com/tutorials/how-to-edit-hosts-file#Change_the_File_Manually to learn how to edit host files
+
+    OPEN notepad as administrator
+    got to C:\Windows\System32\Drivers\etc/hosts
+    add this line
+        127.0.0.1 php-expense-tracker-app.local
+
+    restart the server
+    now open your browser
+    YES, IT WORKED!😁😊😎
+
+
