@@ -65,3 +65,4 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
 
 - check app is still working by refreshing home page
 
+- initialize git
