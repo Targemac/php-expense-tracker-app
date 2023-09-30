@@ -123,3 +123,24 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
         to:     
         AllowOverride None
     - restart xampp 
+
+
+*************************************
+*** CREATING A ROUTER CLASS ***
+*************************************
+- create in /Framework/Router.php
+- add description
+- declear strict types
+- define namespace
+- create class Router
+- in /App.php , create a property
+    private Router $router;
+- add  construct function to get access to the router when the app is instantiated
+    public function __construct()
+    {
+        $this->router = new Router();
+    }
+
+*************************************
+*** Add A ROUTE ***
+*************************************

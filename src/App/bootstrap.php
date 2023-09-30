@@ -12,4 +12,8 @@ use Framework\App;
 
 $app = new App();
 
+$app->add('/');
+
+dd($app);
+
 return $app;
