@@ -16,16 +16,19 @@ class App
 
     public function run()
     {
-        echo "Application is running";
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        $this->router->dispatch($path, $method);
     }
 
     /**
      * since the $router is private, we define a public method to help us 
      * modify it
      * 
-     *  */ 
-    public function add(string $path)
+     *  */
+    public function get(string $path, array $controller)
     {
-        $this->router->add($path);
+        $this->router->add("GET", $path, $controller);
     }
 }

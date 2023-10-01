@@ -144,3 +144,12 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
 *************************************
 *** Add A ROUTE ***
 *************************************
+*************************************
+*** creating a controller ***
+*************************************
+- controllers are classes responsible for rendering a pages contents
+ - create /src/App/Controllers
+ - declear strict types
+ - add namespace (App\Controllers)
+ - create class
+ - define a method that would be called by the router (public function home)
