@@ -153,3 +153,14 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
  - add namespace (App\Controllers)
  - create class
  - define a method that would be called by the router (public function home)
+
+
+*************************************
+*** ouput buffering ***
+*************************************
+- a feature for storing content in memory to prevent it from being sent to the browser imediatly
+
+- in xamp, 
+    open php.ini file
+        -search for output_buffering=4096
+        - if found, thi means the setting is enabled, if not conact hosting provider or find how to enable it

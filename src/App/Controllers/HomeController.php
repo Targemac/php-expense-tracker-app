@@ -32,7 +32,6 @@ class HomeController
     // define a method that would be called by the router
     public function Home()
     {
-        dd($this->view);
-        echo 'Home page';
+        echo $this->view->render("/index.php", ['title' => "home page"]);
     }
 }
