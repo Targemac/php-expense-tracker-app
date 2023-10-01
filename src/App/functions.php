@@ -11,3 +11,13 @@ function dd(mixed $value)
     echo "</pre>";
     die();
 }
+/**
+ * e
+ * 
+ * @method e this function is used to escape malcious characters from been inserted into our page
+ * @param mixed $value
+ */
+function e(mixed $value): string
+{
+    return htmlspecialchars((string) $value);
+}
