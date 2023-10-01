@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use Framework\TemplateEngine;
+
 
 /**
  *Home COntroller
@@ -18,9 +20,18 @@ namespace App\Controllers;
 
 class HomeController
 {
+    private TemplateEngine $view;
+
+    public function __construct()
+    {
+        $this->view = new TemplateEngine();
+    }
+
+
     // define a method that would be called by the router
     public function Home()
     {
+        dd($this->view);
         echo 'Home page';
     }
 }
