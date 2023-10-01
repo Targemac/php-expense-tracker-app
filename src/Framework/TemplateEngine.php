@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -12,6 +12,12 @@ namespace Framework;
  * @method
  */
 
- class TemplateEngine{
+class TemplateEngine
+{
 
- }
+    // $basePath stores the absolute path to our directory
+    public function __construct(private string $basePath)
+    {
+        
+    }
+}
