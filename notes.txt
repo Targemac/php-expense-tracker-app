@@ -164,3 +164,45 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
     open php.ini file
         -search for output_buffering=4096
         - if found, thi means the setting is enabled, if not conact hosting provider or find how to enable it
+
+
+*************************************
+*** creating an about page  ***
+*************************************
+
+- in /Controllers
+    - create AboutController.php
+        - add support for strict typing
+            declare(strict_types=1);
+        - add namespace
+            namespace App\Controllers;
+        - import
+            use Framework\TemplateEngine;
+            use App\Config\Paths;
+        - define AboutController class 
+            - create an instance of the TemplateEngine class and store in a variable $view
+            - create a construct method 
+            - set an instance of the TemplateEngine class 
+                 $this->view = new TemplateEngine(Paths::VIEW);
+            - define method reponsible for rendering a page 
+                - define public mthod called about
+                    public function about()
+                    {
+                        - pass in template name 
+                        - provide an array of data 
+                        echo $this->view->render("about.php", ['title' => "About Page"]);
+                    }
+- in /views
+    - create about.php 
+        paste in html code 
+        - inclde partials for header and footer
+- to register a route 
+    - open App/bootstrap.php
+        - import AboutController from namespace
+            use App\Controllers\AboutController;
+        - call the get() method on the $app instance 
+            $app->get('/about', [AboutController::class, 'about']); 
+- navigate to browser and refresh
+
+            
+

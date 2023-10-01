@@ -19,7 +19,7 @@ use App\Config\Paths;
  *
  */
 
-class HomeController
+class AboutController
 {
     private TemplateEngine $view;
 
@@ -30,8 +30,8 @@ class HomeController
 
 
     // define a method that would be called by the router
-    public function home()
+    public function about()
     {
-        echo $this->view->render("/index.php", ['title' => "home page"]);
+        echo $this->view->render("about.php", ['title' => "About Page"]);
     }
 }
