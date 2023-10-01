@@ -46,6 +46,20 @@ class Router
         $path = $this->normalizePath($path);
         $method = strtoupper($method);
 
-        echo $path . $method;
+        foreach ($this->routes as $route) {
+            // we check if path dont match and method also dont match
+            if (!preg_match("#^{$route['path']}$#", $path) || $route['method'] !== $method) {
+                continue;
+            }
+
+            // destructure the class name and functiona name from the route-cntroller
+            [$class, $function] = $route['controller'];
+
+            // create an instance of the class
+            $controllerInstance = new $class;
+
+            // invoke method passed into the route
+            $controllerInstance->$function();
+        }
     }
 }
