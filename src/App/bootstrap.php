@@ -10,21 +10,14 @@ declare(strict_types=1);
 require __DIR__ . "/../../vendor/autoload.php";
 
 use Framework\App;
-use App\Controllers\HomeController;
-use App\Controllers\AboutController;
+use App\Config\Paths;
+
+use function App\Config\registerRoutes;
 
 
-$app = new App();
+$app = new App(Paths::SOURCE . "App/container-definitions.php");
 
-// register controller with route
-// pass path [namespace, and controller name]
-/** 
- *  using the 'HomeController::class' magic constant, php knows where to find the class in the App\Controllers\HomeController namespace, 
- * this also helps reduce erros 
- * */
-$app->get('/', [HomeController::class, 'home']);
-$app->get('/about', [AboutController::class, 'about']); 
-
+registerRoutes($app);
 // dd($app);
 
 return $app;

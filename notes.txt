@@ -205,4 +205,46 @@ open C:\xampp\apache\conf/extra/httpd-vhosts.conf
 - navigate to browser and refresh
 
             
+*************************************
+*** auto-loading functions  ***
+*************************************  
+- create /Config/Routes.php 
+    - copy the following into Routes.php
+        declare(strict_types=1);
 
+        namespace App\Config;
+
+        use Framework\App;
+        use App\Controllers\HomeController;
+        use App\Controllers\AboutController;
+
+        function registerRoutes(App $app)
+        {
+            // register controller with route
+            // pass path [namespace, and controller name]
+            /** 
+            *  using the 'HomeController::class' magic constant, php knows where to find the class in the App\Controllers\HomeController namespace, 
+            * this also helps reduce erros 
+            * */
+            $app->get('/', [HomeController::class, 'home']);
+            $app->get('/about', [AboutController::class, 'about']);
+        }
+    - in /bootstrap.php 
+        - import 
+            use function App\Config\registerRoutes;
+        - call the function
+            registerRoutes($app);
+- in composer.json 
+    - modify the autoload , by adding the files property 
+        "autoload": {
+            "psr-4": {
+                "Framework\\":"src/Framework",
+                "App\\":"src/App"
+            },
+            "files": [
+                "src/App/Config/Routes.php"
+            ]
+        }
+- open terminal, enter command
+    composer dump-autoload
+- refresh browser 
