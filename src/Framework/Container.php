@@ -49,8 +49,25 @@ class Container
             if (!$type instanceof ReflectionNamedType || $type->isBuiltin()) {
                 throw new ContainerException("Failed to resolve clas {$className} because invalid param {$name} name.");
             }
+
+            $dependencies[] = $this->get($type->getName());
         }
 
-        dd($params);
+        dd($dependencies);
+    }
+
+    // returns an instance of any dependency
+    public function get(string $id)
+    {
+        // check if key does not exist in array
+        if (!array_key_exists($id, $this->definitions)) {
+            throw new ContainerException('Class ' . $id . " does not exist in the container.");
+        }
+
+        // if it exists
+        $factory = $this->definitions[$id];
+        $dependency = $factory();
+
+        return $dependency;
     }
 }
